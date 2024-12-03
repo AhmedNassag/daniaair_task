@@ -33,7 +33,6 @@ class UserController extends Controller
 
     public function store(StoreRequest $request)
     {
-        dd('ok');
         return $this->user->store($request);
     }
     

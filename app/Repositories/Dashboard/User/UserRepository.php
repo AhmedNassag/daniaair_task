@@ -41,7 +41,7 @@ class UserRepository implements UserInterface
         ->paginate(config('myConfig.paginationCount'))
         ->appends(request()->query());
 
-        $roles       = Role::get();
+        $roles = Role::get();
         
         return view('dashboard.users.index')
         ->with([

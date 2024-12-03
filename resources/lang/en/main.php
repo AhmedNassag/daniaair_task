@@ -82,8 +82,19 @@ return [
     'Employees Total Salary' => 'Employees Total Salary',
     
     //Task
-    'Tasks'       => 'Tasks',
-    'Task'        => 'Task',
-    'Description' => 'Description',
-    'Assign'      => 'Assign',
+    'Tasks'            => 'Tasks',
+    'Task'             => 'Task',
+    'Description'      => 'Description',
+    'Assign'           => 'Assign',
+    'Priorety'         => 'Priorety',
+    'Priority'         => 'Priority',
+    'low'              => 'Low',
+    'medium'           => 'Medium',
+    'high'             => 'High',
+    'Task Status'      => 'Task Status',
+    'Task Priority'    => 'Task Priority',
+    'Tasks Efficiency' => 'Tasks Efficiency',
+    'Pending'          => 'Pending',
+    'In-Progress'      => 'In-Progress',
+    'Completed'        => 'Completed',
 ];

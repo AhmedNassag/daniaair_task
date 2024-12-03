@@ -23,39 +23,47 @@
 			<div class="col-md-8">
 				<!--/Wizard-->
 				<div class="row">
-					<div class="col-md-4 d-flex">
-						<div class="card wizard-card flex-fill">
-							<div class="card-body">
-								<p class="text-primary mt-0 mb-2">{{ trans('main.Managers') }}</p>
-								<h5>{{ @$managers_count}}</h5>
-								<span class="dash-widget-icon bg-1">
-									<i class="fas fa-users"></i>
-								</span>
+					@foreach ($totalUsersByRole as $role)
+						<div class="col-md-4 d-flex">
+							<div class="card wizard-card flex-fill">
+								<div class="card-body">
+									<p class="text-primary mt-0 mb-2">{{ @$role->name }}</p>
+									<h5>{{ @$role->users_count}}</h5>
+									<span class="dash-widget-icon bg-1">
+										<i class="fas fa-users"></i>
+									</span>
+								</div>
 							</div>
 						</div>
-					</div>
+					@endforeach
+					
+					@foreach ($totalTasksByStatusAndPriority as $taskGroup)
 					<div class="col-md-4 d-flex">
 						<div class="card wizard-card flex-fill">
 							<div class="card-body">
-								<p class="text-primary mt-0 mb-2">{{ trans('main.Employees') }}</p>
-								<h5>{{ @$employees_count}}</h5>
+								<p class="text-primary mt-0 mb-2">{{ trans('main.Task Status') }} : {{ @$taskGroup->status }}</p>
+								<p class="text-primary mt-0 mb-2">{{ trans('main.Task Priority') }} : {{ @$taskGroup->priority }}</p>
+								<h5>{{ @$taskGroup->total }}</h5>
 								<span class="dash-widget-icon bg-1">
 									<i class="fas fa-th-large"></i>
 								</span>
 							</div>
 						</div>
 					</div>
+					@endforeach
+
 					<div class="col-md-4 d-flex">
 						<div class="card wizard-card flex-fill">
 							<div class="card-body">
-								<p class="text-primary mt-0 mb-2">{{ trans('main.Tasks') }}</p>
-								<h5>{{ @$tasks_count}}</h5>
+								<p class="text-primary mt-0 mb-2">{{ trans('main.Tasks Efficiency') }}</p>
+								<h5>{{ @number_format($efficiency, 2) . '%'; }}</h5>
 								<span class="dash-widget-icon bg-1">
 									<i class="fas fa-bezier-curve"></i>
 								</span>
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>	
 			<div class="col-md-4 d-flex">

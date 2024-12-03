@@ -55,7 +55,7 @@
                         <label class="form-label">{{ trans('main.Role') }} :</label>
                         <select class="form-control form-select" name="roles_name" required>
                             @foreach($roles as $role)
-                            <option value="{{ $role->name }}" {{ old('roles_name') == $role->id ? 'selected' : ''}}>{{ $role->name }}</option>
+                                <option value="{{ $role->name }}" {{ old('roles_name') == $role->id ? 'selected' : ''}}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                         {{-- {!! Form::select('roles_name', $roles,[], array('class' => 'form-control')) !!} --}}

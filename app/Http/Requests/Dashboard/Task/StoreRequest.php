@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
         return [
             'name'        => 'required|string',
             'description' => 'required|string',
-            'user_id'     => 'required|integer|exists:users,id,roles_name,User',
+            'priority'    => 'required|in:low,medium,high',
+            'user_id'     => 'nullable|integer|exists:users,id,roles_name,User',
             'created_by'  => 'required|integer|exists:users,id',
         ];
     }
@@ -44,11 +45,11 @@ class StoreRequest extends FormRequest
             'name.string'          => trans('validation.string'),
             'description.required' => trans('validation.required'),
             'description.string'   => trans('validation.string'),
-            'user_ids.required'    => trans('validation.required'),
-            'user_ids.array'       => trans('validation.array'),
-            'user_ids.*.required'  => trans('validation.required'),
-            'user_ids.*.integer'   => trans('validation.integer'),
-            'user_ids.*.exists'    => trans('validation.exists'),
+            'priority.required'    => trans('validation.required'),
+            'priority.in'          => trans('validation.in'),
+            'user_id.nullable'     => trans('validation.nullable'),
+            'user_id.integer'      => trans('validation.integer'),
+            'user_id.exists'       => trans('validation.exists'),
         ];
     }
 }

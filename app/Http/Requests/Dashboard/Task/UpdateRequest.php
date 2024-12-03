@@ -26,7 +26,8 @@ class UpdateRequest extends FormRequest
         return [
             'name'        => 'required|string',
             'description' => 'required|string',
-            'user_id'     => 'required|integer|exists:users,id,roles_name,User',
+            'priority'    => 'required|in:low,medium,high',
+            'user_id'     => 'nullable|integer|exists:users,id,roles_name,User',
         ];
     }
 
@@ -43,7 +44,9 @@ class UpdateRequest extends FormRequest
             'name.string'          => trans('validation.string'),
             'description.required' => trans('validation.required'),
             'description.string'   => trans('validation.string'),
-            'user_id.required'     => trans('validation.required'),
+            'priority.required'    => trans('validation.required'),
+            'priority.in'          => trans('validation.in'),
+            'user_id.nullable'     => trans('validation.nullable'),
             'user_id.integer'      => trans('validation.integer'),
             'user_id.exists'       => trans('validation.exists'),
         ];

@@ -8,7 +8,7 @@
                 <div class="card-header text-center" style="background-color:#0F7997; color:#fff;">{{ __('main.Register') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <form action="{{ route('register') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                         @csrf
 
                         <!-- first_name -->
@@ -50,18 +50,20 @@
                             </select>
                         </div>
                         <!-- roles_name -->
-                        <div class="form-group" style="display: none">
+                        <div class="form-group" readonly>
                             <label class="form-label">{{ trans('main.Role') }} :</label>
                             <select class="form-control form-select" name="roles_name" required>
-                                <?php $role = \Spatie\Permission\Models\Role::where('name', 'User')->first(); ?>
-                                <option value="{{ $role->name }}" {{ old('roles_name') == $role->id ? 'selected' : ''}}>{{ $role->name }}</option>
+                                <?php $roles = \Spatie\Permission\Models\Role::where('name', 'User')->get(); ?>
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->name }}" {{ old('roles_name') == $role->id ? 'selected' : ''}}>{{ $role->name }}</option>
+                                @endforeach
                             </select>
                             {{-- {!! Form::select('roles_name', $roles,[], array('class' => 'form-control')) !!} --}}
                         </div>
                         <!-- photo -->
                         <div class="form-group">
                             <label>{{ trans('main.Photo') }}</label>
-                            <input class="form-control" type="file" class="form-control" name="photo" value="{{ old('photo') }}">
+                            <input class="form-control" type="file" class="form-control" name="photo" value="{{ old('photo') }}" required>
                         </div>
 
                         <div class="row mb-0">
@@ -69,6 +71,7 @@
                                 <button id="storeBtn" type="submit" class="btn btn-primary">
                                     {{ __('main.Register') }}
                                 </button>
+                                <br>
                                 <a href="{{ route('login') }}">{{ trans('main.Login') }}</a>
                             </div>
                         </div>

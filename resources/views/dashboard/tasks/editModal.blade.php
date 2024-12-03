@@ -26,6 +26,16 @@
                         <div class="valid-feedback">{{ trans('main.Looks Good') }}</div>
                         <div class="invalid-feedback">{{ trans('main.Error Here')}}</div>
                     </div>
+                    <!-- priority -->
+                    <div class="form-group">
+                        <label class="form-label">{{ trans('main.Priority') }} :</label>
+                        <select class="form-control form-select" name="priority">
+                            {{-- <option value="">{{ trans('main.Choose') }}</option> --}}
+                            <option value="low" @if($item->priority =='low') selected @endif>{{ trans('main.low') }}</option>
+                            <option value="medium" @if($item->priority == 'medium') selected @endif>{{ trans('main.medium') }}</option>
+                            <option value="high" @if($item->priority == 'high') selected @endif>{{ trans('main.high') }}</option>
+                        </select>
+                    </div>
                     <!-- user_id -->
                     <div class="form-group">
                         <label class="form-label">{{ trans('main.User') }} :</label>

@@ -64,8 +64,12 @@
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
-                                            <label>{{ trans('main.Description') }}</label>
-                                            <input class="form-control" type="text" name="description" value="{{ $description }}">
+                                            <label>{{ trans('main.Priority') }}</label>
+                                            <select class="status form-control form-select" name="riority">
+                                                <option value="low" {{ @$priority == 'low' ? 'selected' : '' }}>{{ trans('main.low') }}</option>
+                                                <option value="medium" {{ @$priority == 'medium' ? 'selected' : '' }}>{{ trans('main.medium') }}</option>
+                                                <option value="high" {{ @$priority == 'high' ? 'selected' : '' }}>{{ trans('main.high') }}</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -183,6 +187,7 @@
                                                         <th class="text-center">{{ trans('main.Description') }}</th>
                                                         <th class="text-center">{{ trans('main.User') }}</th>
                                                         <th class="text-center">{{ trans('main.Status') }}</th>
+                                                        <th class="text-center">{{ trans('main.Priorety') }}</th>
                                                         <th class="text-center">{{ trans('main.CreatedBy') }}</th>
                                                         <th class="text-center">{{ trans('main.Actions') }}</th>
                                                     </tr>
@@ -205,38 +210,53 @@
                                                                 <a href="{{ route('task.changeStatus',$item->id) }}">
                                                                     @if ($item->status == 'pending')
                                                                         <div class="btn ripple btn-purple-gradient" id='swal-success'>
-                                                                            <span class="label text-warning text-center">
+                                                                            <label class="badge badge-info">
                                                                                 {{ app()->getLocale() == 'ar' ? 'قيد الانتظار' : 'Pending' }}
-                                                                            </span>
+                                                                            </label>
                                                                         </div>
                                                                     @elseif ($item->status == 'in-progress')
                                                                         <div class="btn ripple btn-purple-gradient" id='swal-success'>
-                                                                            <span class="label text-info text-center">
+                                                                            <label class="badge badge-warning">
                                                                                 {{ app()->getLocale() == 'ar' ? 'قيد التنفيذ' : 'In-Progress' }}
-                                                                            </span>
+                                                                            </label>
                                                                         </div>
                                                                     @else
                                                                         <div class="btn ripple btn-purple-gradient" id='swal-success'>
-                                                                            <span class="label text-success text-center">
+                                                                            <label class="badge badge-success">
                                                                                 {{ app()->getLocale() == 'ar' ? 'مكتملة' : 'Completed' }}
-                                                                            </span>
+                                                                            </label>
                                                                         </div>
                                                                     @endif
                                                                 </a>
                                                             @else
                                                                 @if ($item->status == 'pending')
-                                                                    <span class="label text-warning text-center">
+                                                                    <label class="badge badge-info">
                                                                         {{ app()->getLocale() == 'ar' ? 'قيد الانتظار' : 'Pending' }}
-                                                                    </span>
+                                                                    </label>
                                                                 @elseif ($item->status == 'in-progress')
-                                                                    <span class="label text-info text-center">
+                                                                    <label class="badge badge-warning">
                                                                         {{ app()->getLocale() == 'ar' ? 'قيد التنفيذ' : 'In-Progress' }}
-                                                                    </span>
+                                                                    </label>
                                                                 @else
-                                                                    <span class="label text-success text-center">
+                                                                    <label class="badge badge-success">
                                                                         {{ app()->getLocale() == 'ar' ? 'مكتملة' : 'Completed' }}
-                                                                    </span>
+                                                                    </label>
                                                                 @endif
+                                                            @endif
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @if ($item->priority == 'low')
+                                                                <span class="label text-primary text-center">
+                                                                    {{ trans("main.$item->priority") }}
+                                                                </span>
+                                                            @elseif ($item->priority == 'medium')
+                                                                <span class="label text-warning text-center">
+                                                                    {{ trans("main.$item->priority") }}
+                                                                </span>
+                                                            @else
+                                                                <span class="label text-danger text-center">
+                                                                    {{ trans("main.$item->priority") }}
+                                                                </span>
                                                             @endif
                                                         </td>
                                                         <td class="text-center">{{ $item->creator->name }}</td>
